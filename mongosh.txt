@@ -33,3 +33,57 @@ db.students.find().limit(1)
 db.students.find().limit(3)
 db.students.find().sort({gpa: -1}).limit(1)
 db.students.find().sort({gpa: -1}).limit(3)
+
+
+db.students.find({name: "Spongebob"})
+db.students.find({gpa: 4.0})
+db.students.find({fullTime: false})
+db.students.find({}, {name: true})
+db.students.find({}, {_id: false, name: true})
+db.students.find({}, {_id: false, name: true, gpa: true})
+db.students.find({name:"Spongebob"}, {_id: false, name: true, gpa: true})
+
+
+db.students.updateOne({name:"spongebob"}, {$set:{fullTime:true}})
+db.students.updateOne({_id: ObjectId("642c0e70985f18e1bcf24d35")}, {$set:{fullTime:false}})
+db.students.updateOne({_id: ObjectId("642c0e70985f18e1bcf24d35")}, {$unset:{fullTime:""}})
+db.students.updateMany({}, {$set:{fullTime:false}})
+db.students.updateOne({name:"Gary"}, {$unset:{fullTime:""}})
+db.students.updateOne({name:"Sandy"}, {$unset:{fullTime:""}})
+
+db.students.updateMany({fullTime:{$exists:false}}, {$set:{fullTime:true}})
+
+db.students.deleteOne({name:"Larry"})
+db.students.deleteMany({fullTime:false})
+db.students.deleteMany({registerDate:{$exists:false}})
+
+db.students.deleteOne({name:"lily"})
+db.students.deleteMany({fullTime:false})
+db.students.deleteMany({registerDate:{$exists:false}})
+
+
+db.students.find({name:{$ne:"spongebob"}})
+db.students.find({age:{$lt:20}})
+db.students.find({age:{$lte:27}})
+db.students.find({age:{$gt:27}})
+db.students.find({age:{$gte:27}})
+db.students.find({gpa:{$gte:3, $lte:4}})
+db.students.find({name:{$in: ["spongebob", "lily"]}}) 
+db.students.find({name:{$nin: ["Spongebob", "lily"]}})
+
+
+db.students.find({$and: [{fullTime:true}, {age:{$lte:22}}]})
+db.students.find({$or: [{fullTime:true}, {age:{$lte:22}}]})
+db.students.find({$nor: [{fullTime:true}, {age:{$lte:22}}]})
+db.students.find({age:{$not:{$gte:30}}})
+
+db.students.createIndex({name: 1})
+db.students.getIndexes()
+db.students.dropIndex("name_1")
+
+db.createCollection("teachers", {capped : true , size : 1000 * 1024, max : 100}, {autoIndexId:false})
+
+capped = Enables a capped collection. Oldest entries are overwritten when the collection reaches its max size.
+size = specifies the maximum size in bytes (x * y bytes)
+max = maximum number of documents allowed
+autoIndexId = Creates an index on _id field

@@ -1,0 +1,42 @@
+[{
+  "_id": {
+    "$oid": "69270a7366463993acd183e0"
+  },
+  "name": "aishu",
+  "age": 18,
+  "gpa": 3.9
+},
+{
+  "_id": {
+    "$oid": "69270a9566463993acd183e2"
+  },
+  "name": "lily",
+  "age": 25,
+  "gpa": 1
+},
+{
+  "_id": {
+    "$oid": "69270aa366463993acd183e4"
+  },
+  "name": "Elias",
+  "age": 50,
+  "gpa": 0
+},
+{
+  "_id": {
+    "$oid": "69270cccb962a7c843cebea8"
+  },
+  "name": "Divya",
+  "age": 20,
+  "gpa": 4,
+  "registerDate": {
+    "$date": "2025-11-26T14:21:00.332Z"
+  },
+  "graduationDate": null,
+  "student": true,
+  "courses": [
+    "Biology",
+    "Maths",
+    "chemistry"
+  ]
+}]
